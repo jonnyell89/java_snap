@@ -5,11 +5,13 @@ public class Main {
 
         CardGame cardGame = new CardGame();
 
-        cardGame.generateDeck();
+        System.out.println(cardGame.getDeck());
 
-        cardGame.getDeck();
+        cardGame.printDeck();
 
         System.out.println(cardGame.name);
+
+        System.out.println(cardGame.dealCard());
 
     }
 }
