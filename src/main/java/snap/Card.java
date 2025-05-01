@@ -6,11 +6,11 @@ public class Card {
     protected String symbol;
     protected int value;
 
-    public Card(String suit, String symbol, int value) {
+    public Card(Suit suit, Rank rank) {
 
-        this.suit = suit;
-        this.symbol = symbol;
-        this.value = value;
+        this.suit = suit.getSuit();
+        this.symbol = rank.getSymbol();
+        this.value = rank.getValue();
 
     }
 

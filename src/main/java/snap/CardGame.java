@@ -10,9 +10,9 @@ public class CardGame {
     protected String name;
 
     // Contains the items to be assigned to the corresponding Card type fields.
-    private static final ArrayList<String> suits = new ArrayList<>(Arrays.asList("♥", "♣", "♦", "♠"));
-    private static final ArrayList<String> symbols = new ArrayList<>(Arrays.asList("2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"));
-    private static final ArrayList<Integer> values = new ArrayList<>(Arrays.asList(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14));
+    // private static final ArrayList<String> suits = new ArrayList<>(Arrays.asList("♥", "♣", "♦", "♠"));
+    // private static final ArrayList<String> symbols = new ArrayList<>(Arrays.asList("2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"));
+    // private static final ArrayList<Integer> values = new ArrayList<>(Arrays.asList(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14));
 
     // To contain all 52 playing cards.
     private ArrayList<Card> cards; // = new ArrayList<>();
@@ -25,11 +25,12 @@ public class CardGame {
     private ArrayList<Card> generateDeck() {
         cards = new ArrayList<>();
         // for (int i = 0; i < suits.size(); i++) {
-        for (String suit : suits) {
-            // symbols.size() == values.size();
-            for (int j = 0; j < values.size(); j++) {
-                Card card = new Card(suit, symbols.get(j), values.get(j));
-                cards.add(card);
+        // for (String suit : suits) {
+        for (Suit suit : Suit.values()) {
+            // for (int j = 0; j < values.size(); j++) {
+            for (Rank rank : Rank.values()) {
+                // Card card = new Card(suit, symbols.get(j), values.get(j));
+                cards.add(new Card(suit, rank));
             }
         }
         return cards;
