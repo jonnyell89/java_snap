@@ -66,7 +66,10 @@
 
 ## Stage 2
 
-- Create a Card class dealCard method that returns the last item in the cards array list.
+- Create a CardGame class dealCard method that returns the last item in the cards array list.
 
     - Return the item at the index position of the length of the cards array list, minus one to account for indexing.
 
+- Create a CardGame class sortDeckIntoValueOrder method that sorts in place the cards array list by order of value.
+
+- Create a CardGame class sortDeckIntoSuitOrder method that sorts in place the cards array list, first by order of suits, then by order of value.

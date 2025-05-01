@@ -2,6 +2,7 @@ package snap;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 
 public class CardGame {
@@ -62,6 +63,10 @@ public class CardGame {
         Comparator<Card> cardComparator = compareBySuit.thenComparing(compareByValue);
         // Comparator<Card> cardComparator = Comparator.comparing(Card::getSuit).thenComparing(Card::getValue);
         cards.sort(cardComparator);
+    }
+
+    public void shuffleDeck() {
+        Collections.shuffle(cards);
     }
 
 }
