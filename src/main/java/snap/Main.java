@@ -7,11 +7,17 @@ public class Main {
 
         System.out.println(cardGame.getDeck());
 
+        // System.out.println(cardGame.name);
+
+        // System.out.println(cardGame.dealCard());
+
+        cardGame.sortDeckIntoValueOrder();
+
         cardGame.printDeck();
 
-        System.out.println(cardGame.name);
+        cardGame.sortDeckIntoSuitOrder();
 
-        System.out.println(cardGame.dealCard());
+        cardGame.printDeck();
 
     }
 }
