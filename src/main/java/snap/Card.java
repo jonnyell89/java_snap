@@ -38,6 +38,10 @@ public class Card {
         this.value = value;
     }
 
+    public void printCard() {
+        System.out.println(this);
+    }
+
     @Override
     public String toString() {
         return "Card{" +

@@ -32,8 +32,8 @@ public class Snap extends CardGame {
         this.currentCard = currentCard;
     }
 
-    public void printCurrentCard() {
-        System.out.println(this.currentCard);
+    public boolean isSnap(Card currentCard, Card previousCard) {
+        return Objects.equals(currentCard.getSymbol(), previousCard.getSymbol());
     }
 
     public void playGame() {
@@ -43,36 +43,26 @@ public class Snap extends CardGame {
         while (!cards.isEmpty()) {
 
             System.out.println("Press enter to deal a card: ");
-
             String inputEnter = input.nextLine();
 
-            // User presses enter:
             if (inputEnter.isEmpty()) {
 
                 Card dealtCard = dealCard();
 
-                setCurrentCard(dealtCard);
-
-                printCurrentCard();
-
                 // Round 1:
                 if (getPreviousCard() == null) {
-
-                    setPreviousCard(getCurrentCard());
-
-                    setCurrentCard(null);
-
+                    setPreviousCard(dealtCard);
+                    getPreviousCard().printCard();
                     continue;
-
                 }
 
-                // Winning condition:
-                if (Objects.equals(getCurrentCard().getSymbol(), getPreviousCard().getSymbol())) {
+                setCurrentCard(dealtCard);
+                getCurrentCard().printCard();
 
+                // Winning Condition:
+                if (isSnap(getCurrentCard(), getPreviousCard())) {
                     System.out.println("Congratulations, you have won the game!");
-
                     return;
-
                 }
 
                 setPreviousCard(getCurrentCard());
@@ -82,11 +72,9 @@ public class Snap extends CardGame {
                 System.out.println("To deal a card, you must press enter.");
 
             }
-
         }
 
         System.out.println("There are no cards left to deal: Game Over");
 
     }
-
 }
