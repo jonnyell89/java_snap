@@ -11,8 +11,10 @@ public class CardGame {
     protected ArrayList<Card> cards;
 
     public CardGame() {
+
         this.name = "Snap";
         this.cards = generateDeck();
+
     }
 
     private ArrayList<Card> generateDeck() {
@@ -36,7 +38,7 @@ public class CardGame {
     }
 
     public Card dealCard() {
-        return cards.get(cards.size() - 1);
+        return cards.remove(cards.size() - 1);
     }
 
     public void sortDeckIntoValueOrder() {

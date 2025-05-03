@@ -72,4 +72,44 @@
 
 - Create a CardGame class sortDeckIntoValueOrder method that sorts in place the cards array list by order of value.
 
+    - Create a Comparator object that compares Card type objects by the value instance variable, using the Card class getValue method.
+
+    - Call the List interface sort method on the cards array list, with the Comparator object as an argument, sorting the cards array list by value.
+
 - Create a CardGame class sortDeckIntoSuitOrder method that sorts in place the cards array list, first by order of suits, then by order of value.
+
+    - Create a Comparator object that compares Card type objects by the suit instance variable, using the Card class getSuit method.
+
+    - Create a Comparator object that compares Card type objects by the value instance variable, using the Card class getValue method.
+
+    - Chain the Comparator objects together, comparing by suit, and if two suits are the same, comparing by value.
+
+    - Call the List interface sort method on the cards array list, with the Comparator object as an argument, sorting the cards array list by value.
+
+
+
+## Stage 3
+
+- Create a Snap class that extends the CardGame class.
+
+  - Create a Snap class constructor:
+
+    - Class must contain a 'currentCard' field to store the Card type object returned by the CardGame class dealCard method.
+
+    - Class must contain a 'previousCard' field to store the Card type object returned by the CardGame class dealCard method from the previous turn.
+
+        - Comparing the currentCard and previousCard fields will comprise the winning condition that ends the game.
+
+- Create a Snap class playGame method:
+
+    - Use a while loop with an exit condition that enables the user to play the game.
+
+    - Create a Scanner object and prompt the user to press enter to take their turn.
+
+    - Call the inherited CardGame class dealCard method to return the card at the top of the deck.
+
+        - Store the returned Card type object in the currentCard field of the Snap class constructor.
+
+        - Print the returned Card type object to the console.
+
+    - If the Rank of the currentCard field matches the Rank of the previousCard field, the player wins and the game ends.
