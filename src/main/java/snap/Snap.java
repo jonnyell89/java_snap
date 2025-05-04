@@ -13,7 +13,14 @@ public class Snap extends CardGame {
         super("Snap");
         this.previousCard = null;
         this.currentCard = null;
-        shuffleDeck();
+
+    }
+
+    public Snap(Player playerOne, Player playerTwo) {
+
+        super("Snap", playerOne, playerTwo);
+        this.previousCard = null;
+        this.currentCard = null;
 
     }
 
@@ -41,7 +48,9 @@ public class Snap extends CardGame {
 
         Scanner input = new Scanner(System.in);
 
-        while (!cards.isEmpty()) {
+        shuffleDeck();
+
+        while (!deck.isEmpty()) {
 
             System.out.println("Press enter to deal a card: ");
             String inputEnter = input.nextLine();

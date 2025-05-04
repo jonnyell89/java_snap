@@ -7,53 +7,87 @@ import java.util.Comparator;
 public abstract class CardGame {
 
     protected String name;
-    protected ArrayList<Card> cards;
+    protected ArrayList<Card> deck;
+    protected Player playerOne;
+    protected Player playerTwo;
 
     public CardGame(String name) {
 
         this.name = name;
-        this.cards = generateDeck();
+        this.deck = generateDeck();
+
+    }
+
+    public CardGame(String name, Player playerOne, Player playerTwo) {
+
+        this.name = name;
+        this.deck = generateDeck();
+        this.playerOne = playerOne;
+        this.playerTwo = playerTwo;
 
     }
 
     private ArrayList<Card> generateDeck() {
-        cards = new ArrayList<>();
+        deck = new ArrayList<>();
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
-                cards.add(new Card(suit, rank));
+                deck.add(new Card(suit, rank));
             }
         }
-        return cards;
+        return deck;
     }
 
     public ArrayList<Card> getDeck() {
-        return cards;
+        return deck;
     }
 
     public void printDeck() {
-        for (Card card : cards) {
+        for (Card card : deck) {
             System.out.println(card.toString());
         }
     }
 
+    public void splitDeck() {
+        int deckSize = deck.size();
+        for (int i = 0; i < deckSize; i++) {
+            if (!(i % 2 == 0)) {
+                playerOne.addCardToHand(dealCard());
+            } else {
+                playerTwo.addCardToHand(dealCard());
+            }
+        }
+    }
+
+    public void resetDeck() {
+        int playerOneHandSize = playerOne.getHand().size();
+        int playerTwoHandSize = playerTwo.getHand().size();
+        for (int i = 0; i < playerOneHandSize; i++) {
+            addCardToDeck(playerOne.playCard());
+        }
+        for (int i = 0; i < playerTwoHandSize; i++) {
+            addCardToDeck(playerTwo.playCard());
+        }
+    }
+
     public Card dealCard() {
-        return cards.remove(cards.size() - 1);
+        return deck.remove(0);
+    }
+
+    public void addCardToDeck(Card card) {
+        deck.add(card);
     }
 
     public void sortDeckIntoValueOrder() {
-        cards.sort(Comparator.comparing(Card::getValue));
+        deck.sort(Comparator.comparing(Card::getValue));
     }
 
     public void sortDeckIntoSuitOrder() {
-//        Comparator<Card> compareBySuit = Comparator.comparing(Card::getSuit);
-//        Comparator<Card> compareByValue = Comparator.comparing(Card::getValue);
-//        Comparator<Card> cardComparator = compareBySuit.thenComparing(compareByValue);
         Comparator<Card> cardComparator = Comparator.comparing(Card::getSuit).thenComparing(Card::getValue);
-        cards.sort(cardComparator);
+        deck.sort(cardComparator);
     }
 
     public void shuffleDeck() {
-        Collections.shuffle(cards);
+        Collections.shuffle(deck);
     }
 
 }

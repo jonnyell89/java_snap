@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class SnapTest {
 
     @Test
-    void testCardGameInitialisesCorrectly() {
+    void testSnapInitialisesCorrectly() {
         Snap snap = new Snap();
 
         assertNotNull(snap);
-        assertEquals(52, snap.cards.size());
+        assertEquals(52, snap.getDeck().size());
 
     }
 
@@ -23,7 +23,7 @@ public class SnapTest {
     void testDeckGeneratedHeartsCorrectlyUsingStream() {
         Snap snap = new Snap();
 
-        Stream<Card> cardStream = snap.cards.stream();
+        Stream<Card> cardStream = snap.getDeck().stream();
         Stream<Card> filteredStream = cardStream.filter(card -> Objects.equals(card.getSuit(), Suit.HEARTS.getSuit()));
         long count = filteredStream.count();
 
@@ -34,7 +34,7 @@ public class SnapTest {
     void testDeckGeneratedClubsCorrectlyUsingStream() {
         Snap snap = new Snap();
 
-        Stream<Card> cardStream = snap.cards.stream();
+        Stream<Card> cardStream = snap.getDeck().stream();
         Stream<Card> filteredStream = cardStream.filter(card -> Objects.equals(card.getSuit(), Suit.CLUBS.getSuit()));
         long count = filteredStream.count();
 
@@ -45,7 +45,7 @@ public class SnapTest {
     void testDeckGeneratedDiamondsCorrectlyUsingStream() {
         Snap snap = new Snap();
 
-        Stream<Card> cardStream = snap.cards.stream();
+        Stream<Card> cardStream = snap.getDeck().stream();
         Stream<Card> filteredStream = cardStream.filter(card -> Objects.equals(card.getSuit(), Suit.DIAMONDS.getSuit()));
         long count = filteredStream.count();
 
@@ -56,7 +56,7 @@ public class SnapTest {
     void testDeckGeneratedSpadesCorrectlyUsingStream() {
         Snap snap = new Snap();
 
-        Stream<Card> cardStream = snap.cards.stream();
+        Stream<Card> cardStream = snap.getDeck().stream();
         Stream<Card> filteredStream = cardStream.filter(card -> Objects.equals(card.getSuit(), Suit.SPADES.getSuit()));
         long count = filteredStream.count();
 
@@ -65,7 +65,6 @@ public class SnapTest {
 
     @Test
     void testIsSnapReturnsTrueCorrectly() {
-
         Card currentCard = new Card(Suit.HEARTS, Rank.NINE);
         Card previousCard = new Card(Suit.DIAMONDS, Rank.NINE);
         Snap snap = new Snap();
@@ -76,12 +75,25 @@ public class SnapTest {
 
     @Test
     void testIsSnapReturnsFalseCorrectly() {
-
         Card currentCard = new Card(Suit.CLUBS, Rank.THREE);
         Card previousCard = new Card(Suit.SPADES, Rank.QUEEN);
         Snap snap = new Snap();
 
         assertFalse(snap.isSnap(currentCard, previousCard));
+
+    }
+
+    @Test
+    void testSplitDeckSplitsTheDeckCorrectly() {
+        Player playerOne = new Player("playerOne");
+        Player playerTwo = new Player("playerTwo");
+        Snap snap = new Snap(playerOne, playerTwo);
+
+        snap.splitDeck();
+
+        assertEquals(26, playerOne.getHand().size());
+        assertEquals(26, playerTwo.getHand().size());
+        assertEquals(0, snap.getDeck().size());
 
     }
 
