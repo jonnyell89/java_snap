@@ -4,15 +4,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class CardGame {
+public abstract class CardGame {
 
     protected String name;
-
     protected ArrayList<Card> cards;
 
-    public CardGame() {
+    public CardGame(String name) {
 
-        this.name = "Snap";
+        this.name = name;
         this.cards = generateDeck();
 
     }

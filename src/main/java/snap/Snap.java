@@ -10,6 +10,7 @@ public class Snap extends CardGame {
 
     public Snap() {
 
+        super("Snap");
         this.previousCard = null;
         this.currentCard = null;
         shuffleDeck();
