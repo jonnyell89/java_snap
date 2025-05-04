@@ -50,6 +50,54 @@ public class Snap extends CardGame {
 
         shuffleDeck();
 
+        int enterCount = 0;
+
+        while (!deck.isEmpty()) {
+
+            System.out.println("Press enter to deal a card: ");
+            String inputEnter = input.nextLine();
+
+            if (inputEnter.isEmpty()) {
+
+                enterCount++;
+
+                Card dealtCard = dealCard();
+
+                // Round 1:
+                if (getPreviousCard() == null) {
+                    setPreviousCard(dealtCard);
+                    getPreviousCard().printCard();
+                    continue;
+                }
+
+                setCurrentCard(dealtCard);
+                getCurrentCard().printCard();
+
+                // Winning Condition:
+                if (isSnap(getCurrentCard(), getPreviousCard())) {
+                    System.out.printf("Congratulations, you won the game in %d turns!", enterCount);
+                    return;
+                }
+
+                setPreviousCard(getCurrentCard());
+
+            } else {
+
+                System.out.println("To deal a card, you must press enter.");
+
+            }
+        }
+
+        System.out.println("There are no cards left to deal: Game Over");
+
+    }
+
+    public void playTwoPlayerGame() {
+
+        Scanner input = new Scanner(System.in);
+
+        shuffleDeck();
+
         while (!deck.isEmpty()) {
 
             System.out.println("Press enter to deal a card: ");
