@@ -11,13 +11,15 @@ public abstract class CardGame {
 
     protected String name;
     protected ArrayList<Card> deck;
+    protected Player player;
     protected Player playerOne;
     protected Player playerTwo;
 
-    public CardGame(String name) {
+    public CardGame(String name, Player player) {
 
         this.name = name;
         this.deck = generateDeck();
+        this.player = player;
         this.scanner = new Scanner(System.in);
 
     }
@@ -52,7 +54,14 @@ public abstract class CardGame {
         }
     }
 
-    public void splitDeck() {
+    public void singlePlayerDealDeckToHand() {
+        int deckSize = deck.size();
+        for (int i = 0; i < deckSize; i++) {
+            player.addCardToHand(dealCard());
+        }
+    }
+
+    public void multiPlayerDealDeckToHands() {
         int deckSize = deck.size();
         for (int i = 0; i < deckSize; i++) {
             if (!(i % 2 == 0)) {
@@ -63,23 +72,12 @@ public abstract class CardGame {
         }
     }
 
-    public void resetDeck() {
-        int playerOneHandSize = playerOne.getHand().size();
-        int playerTwoHandSize = playerTwo.getHand().size();
-        for (int i = 0; i < playerOneHandSize; i++) {
-            addCardToDeck(playerOne.playCard());
-        }
-        for (int i = 0; i < playerTwoHandSize; i++) {
-            addCardToDeck(playerTwo.playCard());
-        }
+    public void addCardToDeck(Card card) {
+        deck.add(card);
     }
 
     public Card dealCard() {
         return deck.remove(0);
-    }
-
-    public void addCardToDeck(Card card) {
-        deck.add(card);
     }
 
     public void sortDeckIntoValueOrder() {
@@ -94,5 +92,4 @@ public abstract class CardGame {
     public void shuffleDeck() {
         Collections.shuffle(deck);
     }
-
 }

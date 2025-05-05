@@ -12,7 +12,8 @@ public class SnapTest {
 
     @Test
     void testSnapInitialisesCorrectly() {
-        Snap snap = new Snap();
+        Player player = new Player("Player");
+        Snap snap = new Snap(player);
 
         assertNotNull(snap);
         assertEquals(52, snap.getDeck().size());
@@ -21,7 +22,8 @@ public class SnapTest {
 
     @Test
     void testDeckGeneratedHeartsCorrectlyUsingStream() {
-        Snap snap = new Snap();
+        Player player = new Player("Player");
+        Snap snap = new Snap(player);
 
         Stream<Card> cardStream = snap.getDeck().stream();
         Stream<Card> filteredStream = cardStream.filter(card -> Objects.equals(card.getSuit(), Suit.HEARTS.getSuit()));
@@ -32,7 +34,8 @@ public class SnapTest {
 
     @Test
     void testDeckGeneratedClubsCorrectlyUsingStream() {
-        Snap snap = new Snap();
+        Player player = new Player("Player");
+        Snap snap = new Snap(player);
 
         Stream<Card> cardStream = snap.getDeck().stream();
         Stream<Card> filteredStream = cardStream.filter(card -> Objects.equals(card.getSuit(), Suit.CLUBS.getSuit()));
@@ -43,7 +46,8 @@ public class SnapTest {
 
     @Test
     void testDeckGeneratedDiamondsCorrectlyUsingStream() {
-        Snap snap = new Snap();
+        Player player = new Player("Player");
+        Snap snap = new Snap(player);
 
         Stream<Card> cardStream = snap.getDeck().stream();
         Stream<Card> filteredStream = cardStream.filter(card -> Objects.equals(card.getSuit(), Suit.DIAMONDS.getSuit()));
@@ -54,7 +58,8 @@ public class SnapTest {
 
     @Test
     void testDeckGeneratedSpadesCorrectlyUsingStream() {
-        Snap snap = new Snap();
+        Player player = new Player("Player");
+        Snap snap = new Snap(player);
 
         Stream<Card> cardStream = snap.getDeck().stream();
         Stream<Card> filteredStream = cardStream.filter(card -> Objects.equals(card.getSuit(), Suit.SPADES.getSuit()));
@@ -65,9 +70,10 @@ public class SnapTest {
 
     @Test
     void testIsSnapReturnsTrueCorrectly() {
+        Player player = new Player("Player");
         Card currentCard = new Card(Suit.HEARTS, Rank.NINE);
         Card previousCard = new Card(Suit.DIAMONDS, Rank.NINE);
-        Snap snap = new Snap();
+        Snap snap = new Snap(player);
 
         assertTrue(snap.isSnap(currentCard, previousCard));
 
@@ -75,9 +81,10 @@ public class SnapTest {
 
     @Test
     void testIsSnapReturnsFalseCorrectly() {
+        Player player = new Player("Player");
         Card currentCard = new Card(Suit.CLUBS, Rank.THREE);
         Card previousCard = new Card(Suit.SPADES, Rank.QUEEN);
-        Snap snap = new Snap();
+        Snap snap = new Snap(player);
 
         assertFalse(snap.isSnap(currentCard, previousCard));
 
@@ -89,7 +96,7 @@ public class SnapTest {
         Player playerTwo = new Player("playerTwo");
         Snap snap = new Snap(playerOne, playerTwo);
 
-        snap.splitDeck();
+        snap.multiPlayerDealDeckToHands();
 
         assertEquals(26, playerOne.getHand().size());
         assertEquals(26, playerTwo.getHand().size());
