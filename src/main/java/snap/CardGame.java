@@ -3,8 +3,11 @@ package snap;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Scanner;
 
 public abstract class CardGame {
+
+    protected final Scanner scanner;
 
     protected String name;
     protected ArrayList<Card> deck;
@@ -15,6 +18,7 @@ public abstract class CardGame {
 
         this.name = name;
         this.deck = generateDeck();
+        this.scanner = new Scanner(System.in);
 
     }
 
@@ -24,6 +28,7 @@ public abstract class CardGame {
         this.deck = generateDeck();
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
+        this.scanner = new Scanner(System.in);
 
     }
 

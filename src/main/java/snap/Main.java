@@ -45,7 +45,15 @@ public class Main {
 
                 Snap snapTwoPlayer = new Snap(playerOne, playerTwo);
 
-                snapTwoPlayer.playGame();
+                snapTwoPlayer.shuffleDeck();
+                snapTwoPlayer.printDeck();
+                snapTwoPlayer.splitDeck();
+                System.out.println(snapTwoPlayer.deck.size());
+
+                System.out.println(playerOne.getHand());
+                System.out.println(playerTwo.getHand());
+
+                snapTwoPlayer.playTwoPlayerGame();
 
             }
 
