@@ -2,8 +2,6 @@ package snap;
 
 import java.util.Scanner;
 
-import static java.lang.System.exit;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -38,9 +36,7 @@ public class Main {
 
                     singlePlayer.playSinglePlayerGame();
 
-                    singlePlayer.singlePlayerAddHandToPile();
-
-                    singlePlayer.addPileToDeck();
+                    singlePlayer.singlePlayerResetGame();
 
                 }
 
@@ -58,9 +54,7 @@ public class Main {
 
                     multiPlayer.playMultiPlayerGame();
 
-                    multiPlayer.multiPlayerAddHandsToPile();
-
-                    multiPlayer.addPileToDeck();
+                    multiPlayer.multiPlayerResetGame();
 
                 }
 

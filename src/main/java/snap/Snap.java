@@ -119,7 +119,7 @@ public class Snap extends CardGame {
                 return;
             }
         }
-        System.out.println("There are no cards left to deal: Game Over");
+        System.out.println("There are no cards left to deal: Game Over\n");
     }
 
     public void playMultiPlayerGame() {
@@ -139,7 +139,7 @@ public class Snap extends CardGame {
                 return;
             }
         }
-        System.out.println("There are no cards left to deal: Game Over");
+        System.out.println("There are no cards left to deal: Game Over\n");
     }
 
     // Returns true if player wins, otherwise returns false: calls isSnap.
@@ -175,7 +175,7 @@ public class Snap extends CardGame {
         Card playedCard = player.playCard();
 
         if (turnLogic(playedCard)) {
-            System.out.printf("Congratulations %s, you won the game in %d turns!", player.getName(), player.getTurnCounter());
+            System.out.printf("Congratulations %s, you won the game in %d turns!\n", player.getName(), player.getTurnCounter());
             return true;
         }
         return false;
