@@ -31,10 +31,6 @@ public class Snap extends CardGame {
         return pile;
     }
 
-    public void setPile(ArrayList<Card> pile) {
-        this.pile = pile;
-    }
-
     public Card getPreviousCard() {
         return previousCard;
     }
@@ -43,8 +39,8 @@ public class Snap extends CardGame {
         this.previousCard = previousCard;
     }
 
-    public void addPreviousCardToPile(Card previousCard) {
-        pile.add(previousCard);
+    public void addPreviousCardToPile() {
+        addCardToPile(getPreviousCard());
         setPreviousCard(null);
     }
 
@@ -56,8 +52,8 @@ public class Snap extends CardGame {
         this.currentCard = currentCard;
     }
 
-    public void addCurrentCardToPile(Card currentCard) {
-        addCardToPile(currentCard);
+    public void addCurrentCardToPile() {
+        addCardToPile(getCurrentCard());
         setCurrentCard(null);
     }
 
@@ -157,12 +153,12 @@ public class Snap extends CardGame {
 
         // Winning Condition:
         if (isSnap(getCurrentCard(), getPreviousCard())) {
-            addCurrentCardToPile(getCurrentCard());
-            addPreviousCardToPile(getPreviousCard());
+            addCurrentCardToPile();
+            addPreviousCardToPile();
             return true;
         }
 
-        addPreviousCardToPile(getPreviousCard());
+        addPreviousCardToPile();
         setPreviousCard(getCurrentCard());
 
         return false;

@@ -34,6 +34,10 @@ public abstract class CardGame {
 
     }
 
+    public String getName() {
+        return name;
+    }
+
     private ArrayList<Card> generateDeck() {
         deck = new ArrayList<>();
         for (Suit suit : Suit.values()) {
@@ -46,12 +50,6 @@ public abstract class CardGame {
 
     public ArrayList<Card> getDeck() {
         return deck;
-    }
-
-    public void printDeck() {
-        for (Card card : deck) {
-            System.out.println(card.toString());
-        }
     }
 
     public void singlePlayerDealDeckToHand() {

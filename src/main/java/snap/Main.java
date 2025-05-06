@@ -67,7 +67,6 @@ public class Main {
             if (gameSelect.equals("q") || gameSelect.equals("Q")) {
                 System.exit(0);
             }
-
         }
     }
 }
