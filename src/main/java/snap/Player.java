@@ -7,12 +7,14 @@ public class Player {
     protected String name;
     protected ArrayList<Card> hand;
     protected int turnCounter;
+    protected  int winCounter;
 
     public Player(String name) {
 
         this.name = name;
         this.hand = new ArrayList<>();
         this.turnCounter = 0;
+        this.winCounter = 0;
 
     }
 
@@ -42,6 +44,31 @@ public class Player {
 
     public void incrementTurnCounter() {
         this.turnCounter++;
+    }
+
+    public int getWinCounter() {
+        return winCounter;
+    }
+
+    public void setWinCounter(int winCounter) {
+        this.winCounter = winCounter;
+    }
+
+    public void incrementWinCounter() {
+        this.winCounter++;
+    }
+
+    public String nthWin() {
+        if (getWinCounter() == 1) {
+            return "st";
+        }
+        if (getWinCounter() == 2) {
+            return "nd";
+        }
+        if (getWinCounter() == 3) {
+            return "rd";
+        }
+        return "th";
     }
 
     public void addCardToHand(Card card) {

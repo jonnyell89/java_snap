@@ -171,7 +171,8 @@ public class Snap extends CardGame {
         Card playedCard = player.playCard();
 
         if (turnLogic(playedCard)) {
-            System.out.printf("Congratulations %s, you won the game in %d turns!\n", player.getName(), player.getTurnCounter());
+            player.incrementWinCounter();
+            System.out.printf("Congratulations %s, you won the game in %d turns, and this was your %d%s win!\n", player.getName(), player.getTurnCounter(), player.getWinCounter(), player.nthWin());
             return true;
         }
         return false;
