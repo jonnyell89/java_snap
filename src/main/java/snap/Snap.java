@@ -90,12 +90,12 @@ public class Snap extends CardGame {
         }
     }
 
-    public void singlePlayerResetGame() {
+    public void resetSinglePlayerGame() {
         singlePlayerAddHandToPile();
         addPileToDeck();
     }
 
-    public void multiPlayerResetGame() {
+    public void resetMultiPlayerGame() {
         multiPlayerAddHandsToPile();
         addPileToDeck();
     }
