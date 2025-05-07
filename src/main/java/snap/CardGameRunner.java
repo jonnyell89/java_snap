@@ -71,9 +71,9 @@ public class CardGameRunner {
         singlePlayer.playSinglePlayerGame();
 
         singlePlayer.resetSinglePlayerGame();
+        player.resetTurnCounter();
 
         runSinglePlayerPlayAgain(player);
-
     }
 
     public void runSinglePlayerSnap(Player player) {
@@ -83,9 +83,9 @@ public class CardGameRunner {
         singlePlayer.playSinglePlayerGame();
 
         singlePlayer.resetSinglePlayerGame();
+        player.resetTurnCounter();
 
         runSinglePlayerPlayAgain(player);
-
     }
 
     public void runSinglePlayerPlayAgain(Player player) {
@@ -106,6 +106,7 @@ public class CardGameRunner {
                 case "n":
                 case "N":
                     System.out.printf("Thank you for playing, %s.\n", player.getName());
+                    System.out.printf("You won %d game/s in total!\n", player.getWinCounter());
                     System.out.println("Returning to the Main Menu...\n");
                     runGameSelect();
                     break;
@@ -130,6 +131,8 @@ public class CardGameRunner {
         multiPlayer.playMultiPlayerGame();
 
         multiPlayer.resetMultiPlayerGame();
+        playerOne.resetTurnCounter();
+        playerTwo.resetTurnCounter();
 
         runMultiPlayerPlayAgain(playerOne, playerTwo);
     }
@@ -141,6 +144,8 @@ public class CardGameRunner {
         multiPlayer.playMultiPlayerGame();
 
         multiPlayer.resetMultiPlayerGame();
+        playerOne.resetTurnCounter();
+        playerOne.resetTurnCounter();
 
         runMultiPlayerPlayAgain(playerOne, playerTwo);
     }
@@ -163,6 +168,8 @@ public class CardGameRunner {
                 case "n":
                 case "N":
                     System.out.printf("Thank you for playing, %s and %s.\n", playerOne.getName(), playerTwo.getName());
+                    System.out.printf("%s, you won %d game/s in total!\n", playerOne.getName(), playerOne.getWinCounter());
+                    System.out.printf("%s, you won %d game/s in total!\n", playerTwo.getName(), playerTwo.getWinCounter());
                     System.out.println("Returning to the Main Menu...\n");
                     runGameSelect();
                     break;

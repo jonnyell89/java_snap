@@ -42,6 +42,10 @@ public class Player {
         this.turnCounter = turnCounter;
     }
 
+    public void resetTurnCounter() {
+        this.turnCounter = 0;
+    }
+
     public void incrementTurnCounter() {
         this.turnCounter++;
     }

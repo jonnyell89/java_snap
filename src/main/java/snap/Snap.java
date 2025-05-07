@@ -110,7 +110,7 @@ public class Snap extends CardGame {
         singlePlayerDealDeckToHand();
 
         while (!player.getHand().isEmpty()) {
-            boolean playerTurn = promptPlayerTurn(player);
+            boolean playerTurn = promptPlayerToPressEnter(player);
             if (playerTurn) {
                 return;
             }
@@ -125,12 +125,12 @@ public class Snap extends CardGame {
 
         while (!playerOne.getHand().isEmpty() && !playerTwo.getHand().isEmpty()) {
 
-            boolean playerOneTurn = promptPlayerTurn(playerOne);
+            boolean playerOneTurn = promptPlayerToPressEnter(playerOne);
             if (playerOneTurn) {
                 return;
             }
 
-            boolean playerTwoTurn = promptPlayerTurn(playerTwo);
+            boolean playerTwoTurn = promptPlayerToPressEnter(playerTwo);
             if (playerTwoTurn) {
                 return;
             }
@@ -179,7 +179,7 @@ public class Snap extends CardGame {
     }
 
     // Returns true when player takes their turn: calls playerTakesTurn.
-    public boolean promptPlayerTurn(Player player) {
+    public boolean promptPlayerToPressEnter(Player player) {
 
         while (true) {
 
@@ -191,7 +191,6 @@ public class Snap extends CardGame {
 
             } else {
                 System.out.println("To deal a card, you must press enter.");
-
             }
         }
     }
