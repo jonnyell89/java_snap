@@ -23,11 +23,11 @@ public class CardGameRunner {
                     break;
                 case "q":
                 case "Q":
-                    System.out.println("Shutting down...");
+                    System.out.println("Shutting down...\n");
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Please press '1' to play, or 'Q' to quit.");
+                    System.out.println("Please press '1' to play, or 'Q' to quit.\n");
             }
         }
     }
@@ -46,16 +46,16 @@ public class CardGameRunner {
             switch (playerSelect) {
                 case "1":
                     runSinglePlayerSnap();
-                    break;
+                    return;
                 case "2":
                     runMultiPlayerSnap();
                 case "q":
                 case "Q":
-                    System.out.println("Returning to the Main Menu...");
+                    System.out.println("Returning to the Main Menu...\n");
                     runGameSelect();
-                    break;
+                    return;
                 default:
-                    System.out.println("Please press '1' for single-player, '2' for multi-player, or 'Q' to return to the Main Menu.");
+                    System.out.println("Please press '1' for single-player, '2' for multi-player, or 'Q' to return to the Main Menu.\n");
             }
         }
     }
@@ -102,16 +102,16 @@ public class CardGameRunner {
                 case "y":
                 case "Y":
                     runSinglePlayerSnap(player);
-                    break;
+                    return;
                 case "n":
                 case "N":
                     System.out.printf("Thank you for playing, %s.\n", player.getName());
-                    System.out.printf("You won %d game/s in total!\n", player.getWinCounter());
+                    printWinnerWinCounter(player);
                     System.out.println("Returning to the Main Menu...\n");
                     runGameSelect();
-                    break;
+                    return;
                 default:
-                    System.out.println("You must either press 'Y' to play again or 'N' to return to the Main Menu.");
+                    System.out.println("You must either press 'Y' to play again or 'N' to return to the Main Menu.\n");
             }
         }
     }
@@ -164,18 +164,75 @@ public class CardGameRunner {
                 case "y":
                 case "Y":
                     runMultiPlayerSnap(playerOne, playerTwo);
-                    break;
+                    return;
                 case "n":
                 case "N":
                     System.out.printf("Thank you for playing, %s and %s.\n", playerOne.getName(), playerTwo.getName());
-                    System.out.printf("%s, you won %d game/s in total!\n", playerOne.getName(), playerOne.getWinCounter());
-                    System.out.printf("%s, you won %d game/s in total!\n", playerTwo.getName(), playerTwo.getWinCounter());
+                    printMultiPlayerWinCounter(playerOne, playerTwo);
                     System.out.println("Returning to the Main Menu...\n");
                     runGameSelect();
-                    break;
+                    return;
                 default:
-                    System.out.println("You must either press 'Y' to play again or 'N' to return to the Main Menu.");
+                    System.out.println("You must either press 'Y' to play again or 'N' to return to the Main Menu.\n");
             }
+        }
+    }
+
+    public void printWinnerWinCounter(Player player) {
+        if (player.getWinCounter() > 1) {
+            System.out.printf("Congratulations, %s. You won %d games in total!\n", player.getName(), player.getWinCounter());
+        }
+
+        else if (player.getWinCounter() == 1) {
+            System.out.printf("Congratulations, %s. You won %d game in total.\n", player.getName(), player.getWinCounter());
+        }
+
+        else {
+            System.out.printf("Commiserations, %s. You won %d games in total.\n", player.getName(), player.getWinCounter());
+        }
+    }
+
+    public void printLoserWinCounter(Player player) {
+        if (player.getWinCounter() > 1) {
+            System.out.printf("Commiserations, %s. You lost, but you still won %d games in total!\n", player.getName(), player.getWinCounter());
+        }
+
+        else if (player.getWinCounter() == 1) {
+            System.out.printf("Commiserations, %s. You lost, but you still won %d game in total.\n", player.getName(), player.getWinCounter());
+        }
+
+        else {
+            System.out.printf("Commiserations, %s. You lost, and you won %d games in total.\n", player.getName(), player.getWinCounter());
+        }
+    }
+
+    public void printDrawWinCounter(Player playerOne, Player playerTwo) {
+        if (playerOne.getWinCounter() > 1) {
+            System.out.println("Well done, %s and %s! You both won %d games. It's a draw.");
+        }
+
+        else if (playerOne.getWinCounter() == 1) {
+            System.out.println("Well done, %s and %s. You both won %d game. It's a draw. ");
+        }
+
+        else {
+            System.out.println("Commiserations, %d and %d. You both won %d games.");
+        }
+    }
+
+    public void printMultiPlayerWinCounter(Player playerOne, Player playerTwo) {
+        if (playerOne.getWinCounter() > playerTwo.getWinCounter()) {
+            printWinnerWinCounter(playerOne);
+            printLoserWinCounter(playerTwo);
+        }
+
+        else if (playerTwo.getWinCounter() > playerOne.getWinCounter()) {
+            printWinnerWinCounter(playerTwo);
+            printLoserWinCounter(playerOne);
+        }
+
+        else {
+            printDrawWinCounter(playerOne, playerTwo);
         }
     }
 }

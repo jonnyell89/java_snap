@@ -62,6 +62,14 @@ public class Player {
         this.winCounter++;
     }
 
+    public void addCardToHand(Card card) {
+        hand.add(card);
+    }
+
+    public Card playCard() {
+        return hand.remove(0);
+    }
+
     public String nthWin() {
         if (getWinCounter() == 1) {
             return "st";
@@ -73,13 +81,5 @@ public class Player {
             return "rd";
         }
         return "th";
-    }
-
-    public void addCardToHand(Card card) {
-        hand.add(card);
-    }
-
-    public Card playCard() {
-        return hand.remove(0);
     }
 }

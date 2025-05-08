@@ -2,6 +2,7 @@ package snap;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.*;
 
 public class Snap extends CardGame {
 
@@ -172,7 +173,7 @@ public class Snap extends CardGame {
 
         if (turnLogic(playedCard)) {
             player.incrementWinCounter();
-            System.out.printf("Congratulations %s, you won the game in %d turns, and this was your %d%s win!\n", player.getName(), player.getTurnCounter(), player.getWinCounter(), player.nthWin());
+            System.out.printf("\nCongratulations %s, you won the game in %d turns, and this was your %d%s win!\n", player.getName(), player.getTurnCounter(), player.getWinCounter(), player.nthWin());
             return true;
         }
         return false;
@@ -193,5 +194,35 @@ public class Snap extends CardGame {
                 System.out.println("To deal a card, you must press enter.");
             }
         }
+    }
+
+    // Unable to integrate into the game in time
+    public boolean promptSnapInput() {
+        // Creates an ExecutorService object with a single thread to handle the snap input task.
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+
+        // Creates a Future contract to hold the result of the submitted background thread.
+        Future<String> future = executor.submit(() -> {
+            System.out.println("You have two seconds to type 'snap', or you lose the game!");
+            return scanner.nextLine().trim().toLowerCase();
+        });
+
+        try {
+            // Blocks the main thread and waits for user input from the background thread.
+            String response = future.get(2, TimeUnit.SECONDS);
+            // Returns true if the result of the Future contract is equal to "snap".
+            return response.equals("snap");
+            // Catches the two second TimeoutException.
+        } catch (TimeoutException e) {
+            System.out.println("You were too slow. I'm afraid you lose the game!");
+            // Catches any other Exception.
+        } catch (Exception e) {
+            System.out.println("Something went wrong");
+            // The background thread is always shut down.
+        } finally {
+            executor.shutdownNow();
+        }
+        // Returns false if the user was too slow or the result of the Future contract was not equal to "snap".
+        return false;
     }
 }
