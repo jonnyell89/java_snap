@@ -13,8 +13,6 @@ public class PlayerTest {
         Player player = new Player("player");
 
         assertEquals("player", player.getName());
-        assertEquals(0, player.getHand().size());
-
+        assertTrue(player.getHand().isEmpty());
     }
-
 }

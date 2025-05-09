@@ -7,11 +7,9 @@ public class Card {
     protected int value;
 
     public Card(Suit suit, Rank rank) {
-
         this.suit = suit.getSuit();
         this.symbol = rank.getSymbol();
         this.value = rank.getValue();
-
     }
 
     public String getSuit() {

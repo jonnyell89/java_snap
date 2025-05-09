@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-// UnitOfWork_StateUnderTest_ExpectedBehavior
-
 public class CardTest {
 
     @Test
@@ -15,7 +13,6 @@ public class CardTest {
         assertEquals("♥", cardHearts.getSuit());
         assertEquals("7", cardHearts.getSymbol());
         assertEquals(7, cardHearts.getValue());
-
     }
 
     @Test
@@ -25,7 +22,6 @@ public class CardTest {
         assertEquals("♣", cardClubs.getSuit());
         assertEquals("J", cardClubs.getSymbol());
         assertEquals(11, cardClubs.getValue());
-
     }
 
     @Test
@@ -36,7 +32,6 @@ public class CardTest {
         assertEquals("♦", cardDiamonds.getSuit());
         assertEquals("10", cardDiamonds.getSymbol());
         assertEquals(10, cardDiamonds.getValue());
-
     }
 
     @Test
@@ -48,5 +43,4 @@ public class CardTest {
         assertEquals("3", cardSpades.getSymbol());
         assertEquals(3, cardSpades.getValue());
     }
-
 }

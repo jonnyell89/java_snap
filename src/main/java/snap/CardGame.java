@@ -16,22 +16,18 @@ public abstract class CardGame {
     protected Player playerTwo;
 
     public CardGame(String name, Player player) {
-
         this.name = name;
         this.deck = generateDeck();
         this.player = player;
         this.scanner = new Scanner(System.in);
-
     }
 
     public CardGame(String name, Player playerOne, Player playerTwo) {
-
         this.name = name;
         this.deck = generateDeck();
         this.playerOne = playerOne;
         this.playerTwo = playerTwo;
         this.scanner = new Scanner(System.in);
-
     }
 
     public String getName() {

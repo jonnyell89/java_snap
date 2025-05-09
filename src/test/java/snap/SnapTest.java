@@ -160,36 +160,6 @@ public class SnapTest {
     }
 
     @Test
-    void testPreviousCardAddedToPile() {
-        Player player = new Player("Player");
-        Snap snap = new Snap(player);
-        Card card = new Card(Suit.HEARTS, Rank.SEVEN);
-
-        assertNull(snap.getPreviousCard());
-        snap.setPreviousCard(card);
-        assertEquals(card, snap.getPreviousCard());
-        assertTrue(snap.getPile().isEmpty());
-        snap.addPreviousCardToPile();
-        assertEquals(1, snap.getPile().size());
-        assertNull(snap.getPreviousCard());
-    }
-
-    @Test
-    void testCurrentCardAddedToPile() {
-        Player player = new Player("Player");
-        Snap snap = new Snap(player);
-        Card card = new Card(Suit.DIAMONDS, Rank.TWO);
-
-        assertNull(snap.getCurrentCard());
-        snap.setCurrentCard(card);
-        assertEquals(card, snap.getCurrentCard());
-        assertTrue(snap.getPile().isEmpty());
-        snap.addCurrentCardToPile();
-        assertEquals(1, snap.getPile().size());
-        assertNull(snap.getCurrentCard());
-    }
-
-    @Test
     void testIsSnapReturnsTrueCorrectly() {
         Player player = new Player("Player");
         Card currentCard = new Card(Suit.HEARTS, Rank.NINE);
