@@ -161,13 +161,13 @@ public class Snap extends CardGame {
 
         // Creates a Future contract to hold the result of the submitted background thread.
         Future<String> future = executor.submit(() -> {
-            System.out.println("You have three seconds to type 'snap'!");
+            System.out.println("You have two seconds to type 'snap'!");
             return threadScanner.nextLine().trim().toLowerCase();
         });
 
         try {
             // Blocks the main thread and waits for user input from the background thread.
-            String response = future.get(3, TimeUnit.SECONDS);
+            String response = future.get(2, TimeUnit.SECONDS);
             // Returns true if the result of the Future contract is equal to "snap".
             return response.equals("snap");
             // Catches the two second TimeoutException.
