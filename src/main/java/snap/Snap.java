@@ -9,8 +9,8 @@ public class Snap extends CardGame {
 
     protected ArrayList<Card> pile;
 
-    public Snap(Player player) {
-        super("Snap: Single-player", player);
+    public Snap(Player playerOne) {
+        super("Snap: Single-player", playerOne);
         this.pile = new ArrayList<>();
     }
 
@@ -47,9 +47,9 @@ public class Snap extends CardGame {
     }
 
     public void singlePlayerAddHandToPile() {
-        int handSize = player.getHand().size();
+        int handSize = playerOne.getHand().size();
         for (int i = 0; i < handSize; i++) {
-            addCardToPile(player.playCard());
+            addCardToPile(playerOne.playCard());
         }
     }
 
@@ -82,8 +82,8 @@ public class Snap extends CardGame {
         shuffleDeck();
         singlePlayerDealDeckToHand();
 
-        while (!player.getHand().isEmpty()) {
-            boolean playerTurn = promptPlayerToPressEnter(player);
+        while (!playerOne.getHand().isEmpty()) {
+            boolean playerTurn = promptPlayerToPressEnter(playerOne);
             if (playerTurn) {
                 return;
             }
@@ -108,18 +108,18 @@ public class Snap extends CardGame {
         System.out.println("There are no cards left to deal: Game Over\n");
     }
 
-    // Returns true if player wins, otherwise returns false: calls isSnap.
-    public boolean turnLogic(Card playedCard) {
-        if (getPile().isEmpty()) {
-            playedCard.printCard();
-            addCardToPile(playedCard);
-            return false;
-        }
-        playedCard.printCard();
-        addCardToPile(playedCard);
+    // Returns when player takes their turn: calls playerTakesTurn.
+    public boolean promptPlayerToPressEnter(Player player) {
+        while (true) {
+            System.out.printf("%s, press enter to deal a card: ", player.getName());
+            String inputEnter = scanner.nextLine();
 
-        // Winning Condition:
-        return isSnap(getCurrentCard(), getPreviousCard());
+            if (inputEnter.isEmpty()) {
+                return playerTakesTurn(player);
+            } else {
+                System.out.println("To deal a card, you must press enter.");
+            }
+        }
     }
 
     // Returns true if player wins, otherwise returns false: calls turnLogic and promptSnapInput.
@@ -138,18 +138,18 @@ public class Snap extends CardGame {
         return false;
     }
 
-    // Returns when player takes their turn: calls playerTakesTurn.
-    public boolean promptPlayerToPressEnter(Player player) {
-        while (true) {
-            System.out.printf("%s, press enter to deal a card: ", player.getName());
-            String inputEnter = scanner.nextLine();
-
-            if (inputEnter.isEmpty()) {
-                return playerTakesTurn(player);
-            } else {
-                System.out.println("To deal a card, you must press enter.");
-            }
+    // Returns true if player wins, otherwise returns false: calls isSnap.
+    public boolean turnLogic(Card playedCard) {
+        if (getPile().isEmpty()) {
+            playedCard.printCard();
+            addCardToPile(playedCard);
+            return false;
         }
+        playedCard.printCard();
+        addCardToPile(playedCard);
+
+        // Winning Condition:
+        return isSnap(getCurrentCard(), getPreviousCard());
     }
 
     public boolean promptSnapInput() {

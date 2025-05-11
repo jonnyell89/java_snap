@@ -11,14 +11,13 @@ public abstract class CardGame {
 
     protected String name;
     protected ArrayList<Card> deck;
-    protected Player player;
     protected Player playerOne;
     protected Player playerTwo;
 
-    public CardGame(String name, Player player) {
+    public CardGame(String name, Player playerOne) {
         this.name = name;
         this.deck = generateDeck();
-        this.player = player;
+        this.playerOne = playerOne;
         this.scanner = new Scanner(System.in);
     }
 
@@ -51,7 +50,7 @@ public abstract class CardGame {
     public void singlePlayerDealDeckToHand() {
         int deckSize = deck.size();
         for (int i = 0; i < deckSize; i++) {
-            player.addCardToHand(dealCard());
+            playerOne.addCardToHand(dealCard());
         }
     }
 

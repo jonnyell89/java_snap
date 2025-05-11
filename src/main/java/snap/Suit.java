@@ -1,7 +1,6 @@
 package snap;
 
 public enum Suit {
-
     HEARTS("♥"),
     CLUBS("♣"),
     DIAMONDS("♦"),
